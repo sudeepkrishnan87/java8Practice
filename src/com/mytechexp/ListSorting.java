@@ -1,9 +1,8 @@
 package com.mytechexp;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.sql.Array;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,7 +25,20 @@ public class ListSorting {
         System.out.println("Easy Way");
         System.out.println("************************************************************");
         empStream.stream().sorted(Comparator.comparing(Employee::getSalary).thenComparing(e->e.getName())).forEach(System.out::println);
+
+
+
+        //Convert List to Map with key name and id value as department
+       System.out.println("Converting List to String");
+
+        Map<String,String> listToMap=empStream.stream().collect(Collectors.toMap(e->e.getName()+"-"+e.getId(),employee -> employee.getDepartment()));
+
+        listToMap.forEach((k,v)->System.out.println(k+":"+v));
+
+
     }
+
+
 
 
 }
